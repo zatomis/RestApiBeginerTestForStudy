@@ -7,10 +7,10 @@
 ### Начальные настройки
 * Клонируем репозиторий
 ```commandline
-git clone ...git
+git clone git@github.com:zatomis/RestApiBeginerTestForStudy.git
 ```
 
-### Проект может быть развернут локально. Используйте dockerfile.
+### Проект может быть развернут на вашем сервере. Используйте dockerfile.
 1. Создайте сеть докер
 ```commandline
 docker network create myNetwork
@@ -42,12 +42,14 @@ docker run --name reservation_back \
     reservation_image
 ```
 
-## Предварительная подготовка для запуска в 
+5. Запустите в браузере 
+![img_1.png](img_1.png)
+```commandline
+    http://хх.хх.хх.хх:7777/docs
+    где вместо хх - ваш ip адрес сервера
+```
 
-
-
-## Пример работы телеграм бота:
-...
+## Предварительная подготовка для запуска в Dockercompose
 
 ## Цель проекта
 Код написан в тестовых целях 
