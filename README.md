@@ -4,7 +4,7 @@
 Разработать REST API для бронирования столиков в ресторане. Сервис должен позволять создавать, просматривать и удалять брони, а также управлять столиками и временными слотами.
 
 ## Как начать
-### Начальные настройки
+### Начальные настройки. Раздел №1
 * Клонируем репозиторий
 ```commandline
 git clone git@github.com:zatomis/RestApiBeginerTestForStudy.git
@@ -51,15 +51,20 @@ docker run --name reservation_back \
 
 ## Предварительная подготовка для запуска в Dockercompose
 
-## Цель проекта
-Код написан в тестовых целях 
+### Запуск
+
+1. Запустить POSTGRES см. п.1.3 
+2. docker compose up -d
+
+## Предварительная подготовка для запуска в Dockercompose
+
+### Работа
+
+1. Запустить POSTGRES см. п.1.3 
+2. docker compose up -d
 
 
-x#команда ниже работает через композ
-docker run --name booking_back \
-    -p 7777:8000 \
-    --network=myNetwork \
-    booking_image
+
 
 [//]: # ( это локально)
 docker run --name booking_nginx \
@@ -75,40 +80,3 @@ docker run --name booking_nginx \
     --network=myNetwork \
     -d -p 80:80 -p 443:443 nginx 
 
-------------------------------------------------------------
-
-
-docker build -t reservation_image .
-------------------------------------------------------------
-
-git remote add gitlab git@gitlab.com:zatomis/booking.git 
-git push --all gitlab
-------------------------------------------------------------
-Gitlab Runner  Запуск раннера
-https://habr.com/ru/articles/764568
-
-docker run -d --name gitlab-runner --restart always \
-  -v /srv/gitlab-runner/config:/etc/gitlab-runner \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  gitlab/gitlab-runner:alpine
-
-Регистрация раннера
-
-docker run --rm -it \
-    -v /srv/gitlab-runner/config:/etc/gitlab-runner \
-    gitlab/gitlab-runner:alpine register
-
-Изменение конфига
-Шаг 1
-Заходим в режим редактирования конфига через
-micro /srv/gitlab-runner/config/config.toml
-
-Шаг 2
-Меняем
-volumes = ["/cache"] на
-volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
-
-
-Это для создания и выполнения миграций
-alembic revision --autogenerate -m "initial db"
-alembic upgrade head
