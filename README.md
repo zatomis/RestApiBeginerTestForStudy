@@ -54,7 +54,8 @@ docker run --name reservation_back \
 ### Запуск
 
 1. Запустить POSTGRES см. п.1.3 
-2. docker compose up -d
+2. Если не создана сеть докер - создайте её п.1.1. 
+3. docker compose up -d
 
 ## Предварительная подготовка для запуска в Dockercompose
 
