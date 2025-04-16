@@ -10,7 +10,7 @@ from src.schemas.reservations import ReservationAdd
 from datetime import timedelta
 import logging
 
-router = APIRouter(prefix="/reservations", tags=["Бронирование 💸"])
+router = APIRouter(prefix="/reservations", tags=["Бронирование 💸 🍽️"])
 
 
 @router.get("/")

@@ -1,36 +1,63 @@
+# 🍽️ Тестовое задание: API-сервис бронирования столиков в ресторане
+
+## 📌 Цель
+Разработать REST API для бронирования столиков в ресторане. Сервис должен позволять создавать, просматривать и удалять брони, а также управлять столиками и временными слотами.
+
+## Как начать
+### Начальные настройки
+* Клонируем репозиторий
+```commandline
+git clone ...git
+```
+
+### Проект может быть развернут локально. Используйте dockerfile.
+1. Создайте сеть докер
+```commandline
 docker network create myNetwork
- 
-docker run --name booking_db \
+```
+
+2. Создайте образ ! Внимание файл .env должен содержать поля 
+![img.png](img.png)
+```commandline
+docker build -t reservation_image .
+```
+
+3. Запустите pg sql в докере. Тут указаны пароли в тестовых целях
+```commandline
+docker run --name reservations_db \
     -p 6432:5432 \
-    -e POSTGRES_USER=user_pg \
-    -e POSTGRES_PASSWORD=pass_pg_jJlnNLk3rmRR \
-    -e POSTGRES_DB=booking \
+    -e POSTGRES_USER=postgres \
+    -e POSTGRES_PASSWORD=postgres \
+    -e POSTGRES_DB=restaurant \
     --network=myNetwork \
     --volume pg-booking-data:/var/lib/postgresql/data \
     -d postgres:16
- 
-docker run --name booking_cache \
-    -p 7379:6379 \
-    --network=myNetwork \
-    -d redis:7.4
+```
 
-#команда ниже работает через композ
+4. Запустите образ
+```commandline
+docker run --name reservation_back \
+    -p 7777:8000 \
+    --network=myNetwork \
+    reservation_image
+```
+
+## Предварительная подготовка для запуска в 
+
+
+
+## Пример работы телеграм бота:
+...
+
+## Цель проекта
+Код написан в тестовых целях 
+
+
+x#команда ниже работает через композ
 docker run --name booking_back \
     -p 7777:8000 \
     --network=myNetwork \
     booking_image
-
-#команда ниже работает через композ
-docker run --name booking_celery_worker \
-    --network=myNetwork \
-    booking_image \
-    celery --app=src.tasks.celery_app:celery_app_task_instance worker -l INFO
-
-#команда ниже работает через композ
-docker run --name booking_celery_beat \
-    --network=myNetwork \
-    booking_image \
-    celery --app=src.tasks.celery_app:celery_app_task_instance worker -l INFO -B
 
 [//]: # ( это локально)
 docker run --name booking_nginx \
@@ -49,7 +76,7 @@ docker run --name booking_nginx \
 ------------------------------------------------------------
 
 
-docker build -t booking_image .
+docker build -t reservation_image .
 ------------------------------------------------------------
 
 git remote add gitlab git@gitlab.com:zatomis/booking.git 
@@ -80,5 +107,6 @@ volumes = ["/cache"] на
 volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
 
 
+Это для создания и выполнения миграций
 alembic revision --autogenerate -m "initial db"
 alembic upgrade head
