@@ -26,8 +26,8 @@ docker build -t reservation_image .
 ```commandline
 docker run --name reservations_db \
     -p 6432:5432 \
-    -e POSTGRES_USER=postgres \
-    -e POSTGRES_PASSWORD=postgres \
+    -e POSTGRES_USER=имя \
+    -e POSTGRES_PASSWORD=пароль \
     -e POSTGRES_DB=restaurant \
     --network=myNetwork \
     --volume pg-booking-data:/var/lib/postgresql/data \
@@ -68,7 +68,7 @@ docker run --name reservation_back \
 
 
 [//]: # ( это локально)
-docker run --name booking_nginx \
+docker run --name my_nginx \
     --volume ./nginx.conf:/etc/nginx/nginx.conf \
     --network=myNetwork \
     --rm -p 80:80 nginx 
