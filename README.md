@@ -62,13 +62,9 @@ docker run --name reservation_back \
 ### Работа
 
 1. Запустить POSTGRES см. п.1.3 
-2. docker compose up -d
 
+2. Запуск nginx для SSL. Необходимо запросить сертификат для своего доменного имени
 
-
-### Запуск nginx для SSL
-
-[//]: # ( это на сервере + прокинуть папку с сертификатом)
 docker run --name my_nginx \
     --volume ./nginx.conf:/etc/nginx/nginx.conf \
     --volume /etc/letsencrypt:/etc/letsencrypt \
@@ -76,3 +72,7 @@ docker run --name my_nginx \
     --network=myNetwork \
     -d -p 80:80 -p 443:443 nginx 
 
+3. docker compose up -d
+
+# Тест доступен по адресу
+Bоспользуйтесь [сервисом](https://zatomis.ru/docs).
