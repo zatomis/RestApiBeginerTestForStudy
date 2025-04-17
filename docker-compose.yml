@@ -3,13 +3,10 @@ services:
     container_name: 'reservations_back'
     build:
       context: .
-#    ports:
-#      - "7777:8000"
     networks:
       - myNetwork
     env_file:
       - .env
-
 
 networks:
   myNetwork:
