@@ -75,4 +75,4 @@ docker run --name my_nginx \
 3. docker compose up -d
 
 # Тест доступен по адресу
-Bоспользуйтесь [сервисом](https://zatomis.ru/docs).
+Bоспользуйтесь [zatomis.ru](https://zatomis.ru/docs).
