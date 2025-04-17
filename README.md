@@ -66,15 +66,10 @@ docker run --name reservation_back \
 
 
 
-
-[//]: # ( это локально)
-docker run --name my_nginx \
-    --volume ./nginx.conf:/etc/nginx/nginx.conf \
-    --network=myNetwork \
-    --rm -p 80:80 nginx 
+### Запуск nginx для SSL
 
 [//]: # ( это на сервере + прокинуть папку с сертификатом)
-docker run --name booking_nginx \
+docker run --name my_nginx \
     --volume ./nginx.conf:/etc/nginx/nginx.conf \
     --volume /etc/letsencrypt:/etc/letsencrypt \
     --volume /var/letsencrypt:/var/letsencrypt \
